@@ -21,7 +21,4 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "\
-  npx typeorm migration:run -d dist/data-source.js && \
-  node dist/src/main.js\
-"]
+CMD ["node", "dist/src/main.js"]
