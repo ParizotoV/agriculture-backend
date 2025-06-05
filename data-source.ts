@@ -1,4 +1,3 @@
-// data-source.ts
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 import { Crop } from './src/modules/crop/entities/crop.entity';
@@ -12,6 +11,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || 'Vin@0920',
   database: process.env.DB_NAME || 'brain_agriculture',
+  schema: 'public',
   entities: [Producer, Farm, Crop],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,

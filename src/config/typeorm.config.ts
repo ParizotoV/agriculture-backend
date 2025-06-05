@@ -11,6 +11,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASS || 'Vin@0920',
   database: process.env.DB_NAME || 'brain_agriculture',
+  schema: 'public',
   entities: [join(__dirname, '/../**/*.entity.{ts,js}')],
   migrations: [join(__dirname, '/../migrations/**/*{.ts,.js}')],
   ssl: {
