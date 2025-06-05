@@ -4,6 +4,8 @@ import { Crop } from './src/modules/crop/entities/crop.entity';
 import { Farm } from './src/modules/farm/entities/farm.entity';
 import { Producer } from './src/modules/producer/entities/producer.entity';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 export const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
@@ -13,7 +15,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || 'brain_agriculture',
   schema: 'public',
   entities: [Producer, Farm, Crop],
-  migrations: ['src/migrations/*.ts'],
+  migrations: isProd ? ['dist/src/migrations/*.js'] : ['src/migrations/*.ts'],
   synchronize: false,
   ssl: {
     rejectUnauthorized: false,

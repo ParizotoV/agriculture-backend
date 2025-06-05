@@ -4,6 +4,8 @@ import { join } from 'path';
 
 dotenv.config();
 
+const isProd = process.env.NODE_ENV === 'production';
+
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
