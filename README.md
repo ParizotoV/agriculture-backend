@@ -87,24 +87,24 @@ API para gerenciar produtores rurais, fazendas, colheitas e dashboard.
 ## 🚀 Instalação e Configuração
 
 1. Clone este repositório:  
-   \`\`\`bash
+   ```bash
    git clone https://github.com/seu-usuario/brain-agriculture-api.git
    cd brain-agriculture-api
-   \`\`\`
+   ```
 
 2. Instale as dependências:  
-   \`\`\`bash
+   ```bash
    npm install
    # ou
    yarn install
-   \`\`\`
+   ```
 
 3. Copie o arquivo de ambiente e configure as variáveis:  
-   \`\`\`bash
+   ```bash
    cp .env.example .env
-   \`\`\`
-   Em seguida, ajuste os valores em \`.env\`:
-   \`\`\`env
+   ```
+   Em seguida, ajuste os valores em `.env`:
+   ```env
    # .env
    PORT=3000
    DB_HOST=localhost
@@ -113,7 +113,7 @@ API para gerenciar produtores rurais, fazendas, colheitas e dashboard.
    DB_PASS=sua_senha
    DB_NAME=brain_agriculture
    JWT_SECRET=algumsegredoseguro
-   \`\`\`
+   ```
 
 ---
 
@@ -122,24 +122,24 @@ API para gerenciar produtores rurais, fazendas, colheitas e dashboard.
 ### 1. Usando o PostgreSQL instalado localmente
 
 1. Crie o banco de dados:  
-   \`\`\`bash
+   ```bash
    psql -U seu_usuario -h localhost
    CREATE DATABASE brain_agriculture;
-   \q
-   \`\`\`
+   q
+   ```
 
-2. Atualize \`.env\` com as credenciais corretas.
+2. Atualize `.env` com as credenciais corretas.
 
-3. Execute as migrations (se aplicável) ou deixe \`synchronize: true\` no \`ormconfig.ts\` para sincronizar automaticamente (apenas em desenvolvimento).
+3. Execute as migrations (se aplicável) ou deixe `synchronize: true` no `ormconfig.ts` para sincronizar automaticamente (apenas em desenvolvimento).
 
 4. Inicie a aplicação em modo dev:  
-   \`\`\`bash
+   ```bash
    npm run start:dev
    # ou
    yarn start:dev
-   \`\`\`
+   ```
 
-A aplicação ficará disponível em \`http://localhost:3000\`.
+A aplicação ficará disponível em `http://localhost:3000`.
 
 ---
 
@@ -147,9 +147,9 @@ A aplicação ficará disponível em \`http://localhost:3000\`.
 
 1. Certifique-se de ter Docker & Docker Compose instalados.
 
-2. No \`docker-compose.yml\` (na raiz do projeto), verifique se há um serviço para o banco de dados. Exemplo mínimo:
+2. No `docker-compose.yml` (na raiz do projeto), verifique se há um serviço para o banco de dados. Exemplo mínimo:
 
-   \`\`\`yaml
+   ```yaml
    version: '3.8'
    services:
      db:
@@ -177,14 +177,14 @@ A aplicação ficará disponível em \`http://localhost:3000\`.
          - db
    volumes:
      pgdata:
-   \`\`\`
+   ```
 
 3. Build e suba os containers:  
-   \`\`\`bash
+   ```bash
    docker-compose up --build
-   \`\`\`
+   ```
 
-4. Abra \`http://localhost:3000\` no navegador. A API estará rodando e aguardando requisições.
+4. Abra `http://localhost:3000` no navegador. A API estará rodando e aguardando requisições.
 
 ---
 
@@ -194,35 +194,35 @@ A aplicação ficará disponível em \`http://localhost:3000\`.
 
 Para executar todos os testes unitários e de integração, execute:
 
-\`\`\`bash
+```bash
 npm run test
 # ou
 yarn test
-\`\`\`
+```
 
-O Jest executará os arquivos \`*.spec.ts\` e exibirá o resultado.
+O Jest executará os arquivos `*.spec.ts` e exibirá o resultado.
 
 ### 2. Testes E2E (End-to-End)
 
 Caso tenha a configuração específica para E2E (por exemplo, banco em memória ou Docker), execute:
 
-\`\`\`bash
+```bash
 npm run test:e2e
 # ou
 yarn test:e2e
-\`\`\`
+```
 
-Isso iniciará a aplicação dentro de um ambiente de teste, rodará os testes E2E em \`test/*.e2e-spec.ts\` e exibirá relatórios de sucesso/falha.
+Isso iniciará a aplicação dentro de um ambiente de teste, rodará os testes E2E em `test/*.e2e-spec.ts` e exibirá relatórios de sucesso/falha.
 
 ### 3. Coverage (Cobertura ≥ 80%)
 
 Para gerar o relatório de cobertura:
 
-\`\`\`bash
+```bash
 npm run test:cov
 # ou
 yarn test:cov
-\`\`\`
+```
 
 Ao término, verá um sumário indicando porcentagem de cobertura por pasta e arquivo. Certifique-se de que **Statements**, **Branches**, **Functions** e **Lines** estejam ≥ 80 %.
 
@@ -232,17 +232,17 @@ Ao término, verá um sumário indicando porcentagem de cobertura por pasta e ar
 
 Após iniciar a aplicação (modo dev ou prod), abra no navegador:
 
-\`\`\`
+```
 http://localhost:3000/api
-\`\`\`
+```
 
 Você verá a interface do **Swagger UI**, onde pode explorar todos os endpoints, visualizar DTOs, testar requisições diretamente e conferir exemplos de payload.
 
 O JSON da especificação pode ser obtido em:
 
-\`\`\`
+```
 http://localhost:3000/api-json
-\`\`\`
+```
 
 ---
 
@@ -252,36 +252,36 @@ http://localhost:3000/api-json
 
 O diagrama ER (Entidade-Relacionamento) está disponível em:
 
-- **Arquivo PDF**: [\`docs/er-diagram.pdf\`](docs/er-diagram.pdf)  
+- **Arquivo PDF**: [`docs/er-diagram.pdf`](docs/er-diagram.pdf)  
 - **Visualização Rápida (link)**:  
   [Clique aqui para ver o Diagrama ER no navegador](https://www.dbdiagram.io/d/placeholder-brain-agriculture)  
 
 No diagrama, você verá tabelas como:
-- \`producer\` (produtores)  
-- \`farm\` (fazendas), com *foreign key* para \`producer.id\`  
-- \`crop\` (colheitas), com *foreign key* para \`farm.id\`  
+- `producer` (produtores)  
+- `farm` (fazendas), com *foreign key* para `producer.id`  
+- `crop` (colheitas), com *foreign key* para `farm.id`  
 - Relacionamentos 1-N: um produtor → várias fazendas, uma fazenda → várias colheitas.
 
 ### 2. Diagrama de Fluxo (Opcional)
 
 Para entender o fluxo de requisições:
 
-\`\`\`
+```
 Cliente → [Controller] → [Service] → [Repository/TypeORM] → [Banco de Dados]
          ← (response JSON de volta ao cliente)
-\`\`\`
+```
 
 ![Diagrama de Fluxo](docs/flow-diagram.png)
 
-> Caso não tenha o arquivo \`flow-diagram.png\`, você pode criar um diagrama no [draw.io](https://draw.io) ou [Mermaid Live](https://mermaid.live) e salvar em \`docs/flow-diagram.png\`.
+> Caso não tenha o arquivo `flow-diagram.png`, você pode criar um diagrama no [draw.io](https://draw.io) ou [Mermaid Live](https://mermaid.live) e salvar em `docs/flow-diagram.png`.
 
 ---
 
 ## ⚙️ Configuração de Ambiente
 
-### Arquivo \`.env.example\`
+### Arquivo `.env.example`
 
-\`\`\`env
+```env
 # Porta da API
 PORT=3000
 
@@ -295,9 +295,9 @@ DB_NAME=brain_agriculture
 # (Opcional) JWT para autenticação
 JWT_SECRET=algumsegredoseguro
 JWT_EXPIRES_IN=3600s
-\`\`\`
+```
 
-Renomeie para \`.env\` antes de rodar localmente e ajuste conforme seu ambiente. Em produção, use variáveis de ambiente ou serviços de secret management.
+Renomeie para `.env` antes de rodar localmente e ajuste conforme seu ambiente. Em produção, use variáveis de ambiente ou serviços de secret management.
 
 ---
 
@@ -305,8 +305,10 @@ Renomeie para \`.env\` antes de rodar localmente e ajuste conforme seu ambiente.
 
 ### Dockerfile
 
-\`\`\`dockerfile
-# Stage 1: build
+```dockerfile
+# ===============================
+# Etapa 1: Build da aplicação
+# ===============================
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -314,19 +316,25 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Stage 2: production
-FROM node:18-alpine
+# ===============================
+# Etapa 2: Imagem de produção
+# ===============================
+FROM node:18-alpine AS production
 WORKDIR /app
+
 COPY package*.json ./
 RUN npm ci --omit=dev
+
 COPY --from=builder /app/dist ./dist
-COPY .env ./
+
+EXPOSE 3000
+
 CMD ["node", "dist/main.js"]
-\`\`\`
+```
 
 ### docker-compose.yml
 
-\`\`\`yaml
+```yaml
 version: '3.8'
 services:
   db:
@@ -351,21 +359,21 @@ services:
 
 volumes:
   pgdata:
-\`\`\`
+```
 
 Para subir em produção (ou em seu servidor):
 
-\`\`\`bash
+```bash
 docker-compose up --build -d
-\`\`\`
+```
 
 ---
 
 ## 📜 Migrations e Seeders
 
-Se você habilitar migrations no **TypeORM**, crie diretório \`src/migrations\` e configure em \`ormconfig.ts\`. Por exemplo:
+Se você habilitar migrations no **TypeORM**, crie diretório `src/migrations` e configure em `ormconfig.ts`. Por exemplo:
 
-\`\`\`ts
+```ts
 // ormconfig.ts
 import { DataSource } from 'typeorm';
 import { Producer } from './src/modules/producer/entities/producer.entity';
@@ -383,40 +391,40 @@ export const typeOrmConfig = new DataSource({
   migrations: ['dist/migrations/*.js'],
   synchronize: false, // false em produção
 });
-\`\`\`
+```
 
 Gerar e rodar migrations:
 
-\`\`\`bash
+```bash
 npm run migration:generate --name=NomeDaSuaMigration
 npm run typeorm migration:run
-\`\`\`
+```
 
-Para dados de teste iniciais (seeders), você pode criar um script \`src/seeds/seed.ts\` que use repositórios para inserir registros default.
+Para dados de teste iniciais (seeders), você pode criar um script `src/seeds/seed.ts` que use repositórios para inserir registros default.
 
 ---
 
 ## 🔒 Segurança
 
 - **Validações**:  
-  - \`ValidationPipe\` global remove campos não whitelist.  
-  - DTOs (\`class-validator\`) garantem tipos e padrões (ex.: CPF/CNPJ, soma de áreas).
+  - `ValidationPipe` global remove campos não whitelist.  
+  - DTOs (`class-validator`) garantem tipos e padrões (ex.: CPF/CNPJ, soma de áreas).
 
 - **Tratamento de erros**:  
-  - \`AllExceptionsFilter\` ou \`TypeOrmExceptionFilter\` para uniformizar respostas de erro (404, 400, 500).  
-  - \`LoggingInterceptor\` para registrar requisições e erros.
+  - `AllExceptionsFilter` ou `TypeOrmExceptionFilter` para uniformizar respostas de erro (404, 400, 500).  
+  - `LoggingInterceptor` para registrar requisições e erros.
 
 - **CORS**:  
-  Se precisar habilitar, no \`main.ts\`:
-  \`\`\`ts
+  Se precisar habilitar, no `main.ts`:
+  ```ts
   app.enableCors({
     origin: 'https://dominio-seguro.com',
   });
-  \`\`\`
+  ```
 
 - **Rate limiting (opcional)**:  
-  Instale \`@nestjs/throttler\` e adicione em \`AppModule\`:
-  \`\`\`ts
+  Instale `@nestjs/throttler` e adicione em `AppModule`:
+  ```ts
   import { ThrottlerModule } from '@nestjs/throttler';
 
   @Module({
@@ -426,7 +434,7 @@ Para dados de teste iniciais (seeders), você pode criar um script \`src/seeds/s
     ],
   })
   export class AppModule {}
-  \`\`\`
+  ```
 
 ---
 
