@@ -15,5 +15,5 @@ export const AppDataSource = new DataSource({
   entities: [Producer, Farm, Crop],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
-  ssl: process.env.NODE_ENV === 'production' ? true : true,
+  ssl: true,
 });

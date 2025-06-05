@@ -13,5 +13,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   database: process.env.DB_NAME || 'brain_agriculture',
   entities: [join(__dirname, '/../**/*.entity.{ts,js}')],
   migrations: [join(__dirname, '/../migrations/**/*{.ts,.js}')],
+  ssl: true,
   synchronize: false, // em produção prefira migrations ao invés de true
 };
