@@ -28,4 +28,4 @@ COPY --from=builder /app/dist ./dist
 EXPOSE 3000
 
 # Comando padrão para subir a aplicação em modo de produção
-CMD ["node", "dist/main.js"]
+CMD ["sh", "-c", "npx typeorm migration:run && node dist/main.js"]

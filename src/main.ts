@@ -2,10 +2,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import 'reflect-metadata';
+import { AppDataSource } from '../data-source';
 import { AppModule } from './app.module';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 async function bootstrap() {
+  await AppDataSource.initialize();
+  console.log('Database connected');
+  await AppDataSource.runMigrations();
+  console.log('Migrations applied');
+
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalInterceptors(new LoggingInterceptor());
