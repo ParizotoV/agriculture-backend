@@ -4,8 +4,6 @@ import { join } from 'path';
 
 dotenv.config();
 
-const isProd = process.env.NODE_ENV === 'production';
-
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DB_HOST || 'localhost',
@@ -19,5 +17,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   ssl: {
     rejectUnauthorized: false,
   },
-  synchronize: false, // em produção prefira migrations ao invés de true
+  synchronize: false,
 };
