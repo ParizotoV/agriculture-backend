@@ -31,7 +31,7 @@ export class Farm {
   })
   producer!: Producer;
 
-  @Column({ name: 'producer_id' })
+  @Column({ nullable: true, default: null })
   producerId!: string;
 
   @OneToMany(() => Crop, (crop) => crop.farm, { cascade: true })

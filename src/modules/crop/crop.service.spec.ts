@@ -85,6 +85,8 @@ describe('CropService', () => {
           season: 'Safra 2022',
           cultureName: 'Milho',
           farmId: 'farm-1',
+          harvestQuantity: 100,
+          priceReceived: 10,
           farm: {
             id: 'farm-1',
             name: 'Fazenda A',
@@ -108,6 +110,8 @@ describe('CropService', () => {
           season: 'Safra 2023',
           cultureName: 'Café',
           farmId: 'farm-2',
+          harvestQuantity: 100,
+          priceReceived: 10,
           farm: {
             id: 'farm-2',
             name: 'Fazenda B',
@@ -130,7 +134,7 @@ describe('CropService', () => {
       repo.find!.mockResolvedValue(list);
 
       const result = await service.findAll();
-      expect(repo.find).toHaveBeenCalledWith();
+      expect(repo.find).toHaveBeenCalledWith({ relations: ['farm'] });
       expect(result).toEqual(list);
     });
   });
@@ -142,6 +146,8 @@ describe('CropService', () => {
         season: 'Safra 2022',
         cultureName: 'Soja',
         farmId: 'farm-1',
+        harvestQuantity: 100,
+        priceReceived: 10,
         farm: {
           id: 'farm-1',
           name: 'Fazenda X',
@@ -163,7 +169,7 @@ describe('CropService', () => {
       repo.findOne!.mockResolvedValue(existing);
 
       const result = await service.findOne('c1');
-      expect(repo.findOne).toHaveBeenCalledWith({ where: { id: 'c1' } });
+      expect(repo.findOne).toHaveBeenCalledWith({ relations: ['farm'], where: { id: 'c1' } });
       expect(result).toEqual(existing);
     });
 
@@ -171,7 +177,7 @@ describe('CropService', () => {
       repo.findOne!.mockResolvedValue(undefined);
 
       await expect(service.findOne('nope')).rejects.toThrow(NotFoundException);
-      expect(repo.findOne).toHaveBeenCalledWith({ where: { id: 'nope' } });
+      expect(repo.findOne).toHaveBeenCalledWith({ relations: ['farm'], where: { id: 'nope' } });
     });
   });
 
@@ -182,6 +188,8 @@ describe('CropService', () => {
         season: 'Safra 2022',
         cultureName: 'Milho',
         farmId: 'farm-2',
+        harvestQuantity: 100,
+        priceReceived: 10,
         farm: {
           id: 'farm-2',
           name: 'Fazenda Y',
@@ -206,7 +214,7 @@ describe('CropService', () => {
       repo.save!.mockResolvedValue(merged);
 
       const result = await service.update('c2', dto as any);
-      expect(repo.findOne).toHaveBeenCalledWith({ where: { id: 'c2' } });
+      expect(repo.findOne).toHaveBeenCalledWith({ relations: ['farm'], where: { id: 'c2' } });
       expect(repo.save).toHaveBeenCalledWith(merged);
       expect(result).toEqual(merged);
     });
@@ -216,7 +224,7 @@ describe('CropService', () => {
       await expect(service.update('nope', { season: 'X' } as any)).rejects.toBeInstanceOf(
         NotFoundException,
       );
-      expect(repo.findOne).toHaveBeenCalledWith({ where: { id: 'nope' } });
+      expect(repo.findOne).toHaveBeenCalledWith({ relations: ['farm'], where: { id: 'nope' } });
       expect(repo.save).not.toHaveBeenCalled();
     });
   });

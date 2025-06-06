@@ -50,12 +50,21 @@ export class DashboardService {
       .createQueryBuilder('crop')
       .select('crop.culture_name', 'cultureName')
       .addSelect('COUNT(crop.id)', 'count')
+      .addSelect('SUM(crop.harvestQuantity)', 'totalHarvest')
+      .addSelect('SUM(crop.priceReceived)', 'totalRevenue')
       .groupBy('crop.culture_name')
-      .getRawMany<{ cultureName: string; count: string }>();
+      .getRawMany<{
+        cultureName: string;
+        count: string;
+        totalHarvest: string;
+        totalRevenue: string;
+      }>();
 
-    return raw.map(({ cultureName, count }) => ({
-      cultureName,
-      count: parseInt(count, 10),
+    return raw.map((r) => ({
+      cultureName: r.cultureName,
+      count: parseInt(r.count, 10),
+      totalHarvest: parseFloat(r.totalHarvest) || 0,
+      totalRevenue: parseFloat(r.totalRevenue) || 0,
     }));
   }
 

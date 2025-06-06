@@ -18,7 +18,9 @@ export class FarmService {
   }
 
   async findAll() {
-    return this.farmRepository.find();
+    return this.farmRepository.find({
+      relations: ['producer', 'crops'],
+    });
   }
 
   async findOne(id: string) {

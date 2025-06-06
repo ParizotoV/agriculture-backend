@@ -29,11 +29,16 @@ export class CropService {
   }
 
   async findAll() {
-    return this.cropRepository.find();
+    return this.cropRepository.find({
+      relations: ['farm'],
+    });
   }
 
   async findOne(id: string) {
-    const crop = await this.cropRepository.findOne({ where: { id } });
+    const crop = await this.cropRepository.findOne({
+      where: { id },
+      relations: ['farm'],
+    });
 
     if (!crop) {
       throw new NotFoundException('Crop not found');

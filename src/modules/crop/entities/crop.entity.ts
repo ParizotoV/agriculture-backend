@@ -12,9 +12,15 @@ export class Crop {
   @Column({ name: 'culture_name', length: 50 })
   cultureName!: string;
 
+  @Column('decimal', { precision: 12, scale: 2, nullable: true })
+  harvestQuantity!: number;
+
+  @Column('decimal', { precision: 12, scale: 2, nullable: true })
+  priceReceived!: number;
+
   @ManyToOne(() => Farm, (farm) => farm.crops, { onDelete: 'CASCADE' })
   farm!: Farm;
 
-  @Column({ name: 'farm_id' })
+  @Column({ nullable: true, default: null })
   farmId!: string;
 }

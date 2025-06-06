@@ -151,8 +151,8 @@ describe('DashboardService (unit)', () => {
 
     it('deve agrupar corretamente quando existirem várias culturas', async () => {
       const fakeRaw = [
-        { cultureName: 'Soja', count: '10' },
-        { cultureName: 'Milho', count: '7' },
+        { cultureName: 'Soja', count: '10', totalHarvest: '100', totalRevenue: '1000' },
+        { cultureName: 'Milho', count: '7', totalHarvest: '70', totalRevenue: '700' },
       ];
 
       const fakeQB = {
@@ -165,8 +165,8 @@ describe('DashboardService (unit)', () => {
 
       const result = await service.getByCulture();
       expect(result).toEqual([
-        { cultureName: 'Soja', count: 10 },
-        { cultureName: 'Milho', count: 7 },
+        { cultureName: 'Soja', count: 10, totalHarvest: 100, totalRevenue: 1000 },
+        { cultureName: 'Milho', count: 7, totalHarvest: 70, totalRevenue: 700 },
       ]);
 
       expect(cropRepository.createQueryBuilder).toHaveBeenCalledWith('crop');

@@ -14,6 +14,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   schema: 'public',
   entities: [join(__dirname, '/../**/*.entity.{ts,js}')],
   migrations: [join(__dirname, '/../migrations/**/*{.ts,.js}')],
+  // ssl: false,
   ssl: {
     rejectUnauthorized: false,
   },

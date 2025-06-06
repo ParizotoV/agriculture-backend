@@ -15,6 +15,7 @@ export const AppDataSource = new DataSource({
   entities: [Producer, Farm, Crop],
   migrations: ['src/migrations/*.ts'],
   synchronize: false,
+  // ssl: false,
   ssl: {
     rejectUnauthorized: false,
   },

@@ -106,7 +106,7 @@ describe('FarmService', () => {
       repo.find!.mockResolvedValue(list);
 
       const result = await service.findAll();
-      expect(repo.find).toHaveBeenCalledWith();
+      expect(repo.find).toHaveBeenCalledWith({ relations: ['producer', 'crops'] });
       expect(result).toEqual(list);
     });
   });

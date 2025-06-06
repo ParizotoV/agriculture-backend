@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
 export class CreateCropDto {
   @IsNotEmpty()
@@ -12,4 +12,14 @@ export class CreateCropDto {
   @IsNotEmpty()
   @IsString()
   farmId!: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  harvestQuantity?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  priceReceived?: number;
 }
